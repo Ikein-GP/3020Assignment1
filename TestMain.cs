@@ -26,6 +26,8 @@ public static class TestMain
         {
             Console.WriteLine(i.ToString());
         }
+
+        //this is a test comment to practice with git merging
     }
 }
 
