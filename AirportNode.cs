@@ -41,6 +41,13 @@ class AirportNode
 
     public override string ToString()
     {
-        return "Name: " + Name + " Code: " + Code;
+        string airport = $"Name: {Name}, Code: {Code}, Destinations: {{ ";
+
+        foreach(AirportNode a in Destinations)
+        {
+            airport += $"[{a.Code}] ";
+        }
+
+        return airport + "}";
     }
 }
