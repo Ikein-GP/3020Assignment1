@@ -1,4 +1,4 @@
-﻿// Team: Greg Prouty, Bradley Primeau, Avery Chin
+﻿// Team: Greg Prouty, Bradley Primeau, Avery Chin, Megan Risebrough
 using System;
 using System.Collections.Generic;
 
@@ -39,15 +39,15 @@ class AirportNode
         }
     }
 
-    public override string ToString()
+    public override string ToString() //ToString method to display Airport name, code, and all destination codes
     {
-        string airport = $"Name: {Name}, Code: {Code}, Destinations: {{ ";
+        string airport = $"Name: {Name}, Code: {Code}, Destinations: {{ "; //append name and code to a string
 
-        foreach(AirportNode a in Destinations)
+        foreach(AirportNode a in Destinations) //go through every airport
         {
-            airport += $"[{a.Code}] ";
+            airport += $"[{a.Code}] "; //append each airport code in the destinations list to a single string
         }
 
-        return airport + "}";
+        return airport + "}"; //return completed string
     }
 }
