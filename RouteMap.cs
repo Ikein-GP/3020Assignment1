@@ -10,7 +10,7 @@ class RouteMap
     private List<AirportNode> A; // List of airport nodes (adjaceny list)
 
     // RouteMap: no-arg constructor
-    public RouteMap() 
+    public RouteMap()
     {
         A = new List<AirportNode>(); // initialize new list of airport nodes (vertexes)
 
@@ -68,7 +68,7 @@ class RouteMap
     /// <returns>True if addition occurs, false if airport is not added</returns>
     public bool AddAirport(AirportNode a)
     {
-        if (!A.Contains(a)) 
+        if (!A.Contains(a))
         {
             A.Add(a);
             return true;
@@ -91,7 +91,7 @@ class RouteMap
 
             foreach (AirportNode airport in A) // ensure that all routes to a are also removed
             {
-                airport.RemoveDestination(a); 
+                airport.RemoveDestination(a);
             }//end foreach
 
             return true;
@@ -118,7 +118,7 @@ class RouteMap
             return true;
         }//end if
 
-        Console.WriteLine("Error: Either origin or destination or both do not exist within the List");
+        Console.WriteLine("Error: Either origin or destination or both do not exist within the Route Map");
         return false;
     }// end AddRoute
 
@@ -138,7 +138,7 @@ class RouteMap
             return true;
         }// end if
 
-        Console.WriteLine("Error: Either origin or destination or both do not exist within the List");
+        Console.WriteLine("Error: Either origin or destination or both do not exist within the Route Map");
         return false;
     }// end RemoveRoute
 
@@ -148,43 +148,75 @@ class RouteMap
     /// <param name="origin">The starting airport of type AirportNode</param>
     /// <param name="dest">The target airport of type AirportNode</param>
     /// <returns>A string containing the shortest route</returns>
-    public string FastestRoute (AirportNode origin, AirportNode dest)
+    public string FastestRoute(AirportNode origin, AirportNode dest)
     {
+        // Make sure origin and dest exist in the route map
+        if (!A.Contains(origin) || !A.Contains(dest))
+        { return "Error: Either origin or destination or both do not exist within the Route Map"; }
+
         Queue<AirportNode> frontierQueue = new Queue<AirportNode>(); // Queue used to move through the AirportNodes
         List<AirportNode> discoveredSet = new List<AirportNode>(); // List for AirportNodes once they've been discovered
         AirportNode currentAirport; // Used to keep track of the current AirportNode
-        string route = ""; // String to be added to and returned containing the route
+
+        AirportNode[] path = new AirportNode[A.Count]; // Used to keep track of parent nodes
+        bool pathFound = false;
 
         frontierQueue.Enqueue(origin); // Enqueue the starting AirportNode
         discoveredSet.Add(origin); // Add the starting airport to the discovered ones
 
         while (frontierQueue.Count > 0) // While there is another airport to check
         {
-            currentAirport = frontierQueue.Dequeue(); 
+            currentAirport = frontierQueue.Dequeue();
 
-            if (currentAirport == null)
+            if (currentAirport == null) // This case should never happen
             {
                 return "An error occurred";
             }
 
-            if (currentAirport == dest) // If the current airport is the one we want, stop and return the route
+            if (currentAirport == dest) // Stop searching when destination is found.
             {
-                route = route + currentAirport.Name + ":" + currentAirport.Code;
-                return route;
+                pathFound = true;
+                break;
             }
-            else
-            {
-                route = route + currentAirport.Name + ":" + currentAirport.Code + " -> "; // Add the current airport to the route
-                foreach (AirportNode adjA in currentAirport.Destinations) { // Check each destination airport from current airport
-                    if (!(discoveredSet.Contains(adjA))) // If destination airport has not been discovered, discover it
-                    {
-                        frontierQueue.Enqueue(adjA);
-                        discoveredSet.Add(adjA);
-                    }
+
+            foreach (AirportNode adjA in currentAirport.Destinations)
+            { // Check each destination airport from current airport
+                if (!(discoveredSet.Contains(adjA))) // If destination airport has not been discovered, discover it
+                {
+                    frontierQueue.Enqueue(adjA);
+                    discoveredSet.Add(adjA);
+                    path[A.IndexOf(adjA)] = currentAirport; // store parent into corresponding index
                 }
-            }
+
+            } // end foreach
+
+        }// end while
+
+        // Case where no path is found due to disjoint graph
+        if (!pathFound) { return "Error: No possible route from origin to destination"; }
+
+        // Reconstruct Path
+        List<AirportNode> reconstructed = new List<AirportNode>();
+
+        // Start from dest and work your way back to the beginning
+        // NOTE: dest will not be added to reconstructed List (it is assumed)
+        for (int i = A.IndexOf(dest); path[i] != null; i = A.IndexOf(path[i]))
+        {
+            reconstructed.Add(path[i]);
         }
-        return "An error occurred";
+
+        reconstructed.Reverse(); //reverse the elements in reconstructed
+
+        // Create string to represent shortest path
+        string route = "";
+
+        foreach (AirportNode a in reconstructed)
+        {
+            route += $"{a.Code} --> ";
+        }
+
+        return route += $"{dest.Code}";
+
     }// End FastestRoute
 
     /// <summary>
@@ -196,7 +228,7 @@ class RouteMap
         string airportList = "";
         int index = 0;
 
-        foreach(AirportNode airport in A)
+        foreach (AirportNode airport in A)
         {
             airportList += $"[{index}] {airport.ToString()}\n";
             index++;
