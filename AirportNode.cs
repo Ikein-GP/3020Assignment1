@@ -13,7 +13,12 @@ class AirportNode
         Code = code; //set Code to given code
         Destinations = new List<AirportNode>(); //initialize the list of destinations to an empty list
     }
-    public void AddDestination(AirportNode destAirport) //method to add destinations to an Airports list of destinations
+
+    /// <summary>
+    /// Adds a destination to an Airport's list of destinations
+    /// </summary>
+    /// <param name="destAirport">The destination Airport to add to the list</param>
+    public void AddDestination(AirportNode destAirport) 
     {
         if (Destinations.Contains(destAirport)) //check if the destination already exists
         {
@@ -26,7 +31,11 @@ class AirportNode
         }
     }
 
-    public void RemoveDestination(AirportNode destAirport) //Method to remove destinations from an Airports destinations list
+    /// <summary>
+    /// Removes a destination from an Airports destinations list
+    /// </summary>
+    /// <param name="destAirport">The destination Airport to be removed from the list</param>
+    public void RemoveDestination(AirportNode destAirport) 
     {
         if (!Destinations.Contains(destAirport)) //check if the target Airport has the parameter as a destination
         {
@@ -39,7 +48,11 @@ class AirportNode
         }
     }
 
-    public override string ToString() //ToString method to display Airport name, code, and all destination codes
+    /// <summary>
+    /// ToString method to display Airport name, code, and all destination codes
+    /// </summary>
+    /// <returns>A nicely formatted string of the Airport name, code, and all destination codes</returns>
+    public override string ToString() 
     {
         string airport = $"Name: {Name}, Code: {Code}, Destinations: {{ "; //append name and code to a string
 

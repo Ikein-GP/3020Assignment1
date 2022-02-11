@@ -47,7 +47,23 @@ public static class TestMain
 
         Console.WriteLine($"\n\nRouteMap Test: \n");
         RouteMapTest();
-    }
+
+        // For Future Use
+        AirportNode a1 = new AirportNode("Calgary International Airport", "YYC");
+        AirportNode a2 = new AirportNode("Edmonton International Airport", "YEG");
+        AirportNode a3 = new AirportNode("Fredericton International Airport", "YFC");
+        AirportNode a4 = new AirportNode("Gander International Airport", "YQX");
+        AirportNode a5 = new AirportNode("Halifax Stanfield International Airport", "YHZ");
+        AirportNode a6 = new AirportNode("Greater Moncton Roméo LeBlanc International Airport", "YQM");
+        AirportNode a7 = new AirportNode("Montréal–Trudeau International Airport", "YUL");
+        AirportNode a8 = new AirportNode("Ottawa Macdonald–Cartier International Airport", "YOW");
+        AirportNode a9 = new AirportNode("Québec/Jean Lesage International Airport", "YQB");
+        AirportNode a10 = new AirportNode("St. John's International Airport", "YYT");
+        AirportNode a11 = new AirportNode("Toronto Pearson International Airport", "YYZ");
+        AirportNode a12 = new AirportNode("Vancouver International Airport", "YVR");
+        AirportNode a13 = new AirportNode("Winnipeg International Airport", "YWG");
+
+    }//end Main
 
     public static void RouteMapTest()
     {
@@ -121,6 +137,14 @@ public static class TestMain
 
         ///////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////
+        // Test FastestRoute
+
+        Console.WriteLine("===================================================================");
+        Console.WriteLine("\nFastestRoute Test: test1 to test3");
+        Console.WriteLine(myRouteMap.FastestRoute(node1, node3)); 
+
+        ///////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////
         // Test RemoveRoute
         Console.WriteLine("===================================================================");
         Console.WriteLine("\nRemoveRoute Test:");
@@ -168,19 +192,6 @@ public static class TestMain
         Console.WriteLine("\nPrinting Current RouteMap - test4 attempted removal again:");
         Console.WriteLine(myRouteMap.ToString()); // Print Added Airports to Console
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
+    }// end RouteMapTest
 }
 
