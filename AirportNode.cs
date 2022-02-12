@@ -24,6 +24,10 @@ class AirportNode
         {
             Console.WriteLine("Target airport already has given airport as a destination."); //if destination already exists inform user that it cannot be added
         }
+        else if (destAirport.Name == this.Name)//check if the added airport is the current airport
+        {
+            Console.WriteLine("An airport cannot be it's own destination");
+        }
         else 
         {
             Destinations.Add(destAirport); //add destination to the target Airports list of destinations
