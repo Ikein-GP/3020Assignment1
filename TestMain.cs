@@ -99,7 +99,7 @@ public static class TestMain
 
 
 
-            if (!myRouteMap.A.Contains(a))//This need to be Fixed
+            if (myRouteMap.AddAirport(a) == true)//This need to be Fixed
                 Console.WriteLine($"adding airport: {a}");
             myRouteMap.AddAirport(a); //Test AddAirport
             
