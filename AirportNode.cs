@@ -26,7 +26,7 @@ class AirportNode
         }
         else if (destAirport.Name == this.Name)//check if the added airport is the current airport
         {
-            Console.WriteLine("An airport cannot be it's own destination");
+            Console.WriteLine("An airport cannot be its own destination");
         }
         else 
         {

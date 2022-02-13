@@ -20,15 +20,15 @@ public static class TestMain
         /////////////////////////////////////////////////////
         /// Test AddDestination
         node1.AddDestination(node2);
-        //node1.AddDestination(node3);
-        //node1.AddDestination(node5);
-        //node2.AddDestination(node1);
-        //node1.AddDestination(node2);
-        //node1.AddDestination(node2);
+        node1.AddDestination(node3);
+        node1.AddDestination(node5);
+        node2.AddDestination(node1);
+        node1.AddDestination(node2);
+        node1.AddDestination(node2);
 
         /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
-        // Test RemoveDestination
+        //Test RemoveDestination
         //node1.RemoveDestination(node2);
         //node1.RemoveDestination(node2);
 
@@ -40,7 +40,7 @@ public static class TestMain
         /////////////////////////////////////////////////////
         /////////////////////////////////////////////////////
         // Test ToString
-        //foreach (AirportNode i in node1.Destinations) 
+        //foreach (AirportNode i in node3.Destinations) 
         //{
         //    Console.WriteLine(i.ToString());
         //}
@@ -67,34 +67,49 @@ public static class TestMain
 
     public static void RouteMapTest()
     {
-        //List<AirportNode> airports = new List<AirportNode>();
+        List<AirportNode> airports = new List<AirportNode>();
 
-        //AirportNode node1 = new AirportNode("test1", "3000");
-        //AirportNode node2 = new AirportNode("test2", "4000");
-        //AirportNode node3 = new AirportNode("test3", "5000");
-        //AirportNode node4 = new AirportNode("test4", "6000");
-        //AirportNode node5 = new AirportNode("test5", "7000");
-        //airports.Add(node1);
-        //airports.Add(node2);
-        //airports.Add(node3);
-        //airports.Add(node4);
-        //airports.Add(node5);
+        AirportNode node1 = new AirportNode("test1", "3000");
+        AirportNode node2 = new AirportNode("test2", "4000");
+        AirportNode node3 = new AirportNode("test3", "5000");
+        AirportNode node4 = new AirportNode("test4", "6000");
+        AirportNode node5 = new AirportNode("test5", "7000");
+        AirportNode node6 = new AirportNode("test6", "8000");
+        AirportNode node7 = new AirportNode("test7", "9000");
+        airports.Add(node1);
+        airports.Add(node2);
+        airports.Add(node3);
+        airports.Add(node4);
+        airports.Add(node5);
+        airports.Add(node5);
+        airports.Add(node6);
+        
 
-        //RouteMap myRouteMap = new RouteMap(); // initialize Test RouteMap
+        RouteMap myRouteMap = new RouteMap(); // initialize Test RouteMap
 
         ///////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////
         // Test AddAirport
-        //Console.WriteLine("===================================================================");
-        //Console.WriteLine("\nAddAirport Test:");
+        Console.WriteLine("===================================================================");
+        Console.WriteLine("\nAddAirport Test:");
+        
+        
+        foreach (AirportNode a in airports) 
+        {
 
-        //foreach (AirportNode a in airports) 
-        //{
-        //    Console.WriteLine($"adding airport: {a.Name}");
-        //    myRouteMap.AddAirport(a); //Test AddAirport
-        //}
-        //Console.WriteLine("\nPrinting Current RouteMap:");
-        //Console.WriteLine(myRouteMap.ToString()); // Print Added Airports to Console
+
+
+            if (!myRouteMap.A.Contains(a))//This need to be Fixed
+                Console.WriteLine($"adding airport: {a}");
+            myRouteMap.AddAirport(a); //Test AddAirport
+            
+
+
+        }
+      
+        
+        Console.WriteLine("\nPrinting Current RouteMap:");
+        Console.WriteLine(myRouteMap.ToString()); // Print Added Airports to Console
 
         ///////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////
